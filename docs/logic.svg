@@ -1,0 +1,73 @@
+<svg width="100%" viewBox="0 0 960 700" role="img" xmlns="http://www.w3.org/2000/svg"><title>Qf-dev-os 工作流</title><desc>改动进来后:GATES 机械定级 R0–R5 → 取该级必备工件 + 必跑测试 → DoR 双闸过(已定级·待拍清零·接线写清)进实现 → 写实现 + 对抗测试(种坏门必抓·不破基线)→ DoD 出可审计交付清单 → 落档 + 刷 STATE(诚实非声明)+ validate 自检。侧轨两条:双轴硬门(不可逆真钱永远人审双签,永不降)与自治循环(read-first→write-back→record-blocked)。</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#7a7873" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<style>
+ text{font-family:-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+ .fn{font-size:11.5px;font-weight:600;}.ds{font-size:10px;}.tg{font-size:13px;font-weight:600;fill:#33322f;}.lbl{font-size:10px;fill:#7a7873;}
+ .box{fill:#fbfaf8;stroke:#d8d6cc;stroke-width:0.6;}
+ .c-teal{fill:#E1F5EE;stroke:#0F6E56;stroke-width:0.5;}.c-teal .fn{fill:#085041;}.c-teal .ds{fill:#0F6E56;}
+ .c-gray{fill:#F1EFE8;stroke:#5F5E5A;stroke-width:0.5;}.c-gray .fn{fill:#444441;}.c-gray .ds{fill:#5F5E5A;}
+ .c-purple{fill:#EEEDFE;stroke:#534AB7;stroke-width:0.5;}.c-purple .fn{fill:#3C3489;}.c-purple .ds{fill:#534AB7;}
+ .c-amber{fill:#FAEEDA;stroke:#854F0B;stroke-width:0.5;}.c-amber .fn{fill:#633806;}.c-amber .ds{fill:#854F0B;}
+ .c-red{fill:#FCEBEB;stroke:#A32D2D;stroke-width:0.5;}.c-red .fn{fill:#791F1F;}.c-red .ds{fill:#A32D2D;}
+</style>
+<rect x="0" y="0" width="960" height="700" fill="#fdfdfb"/>
+<text x="40" y="30" style="font-size:17px;font-weight:600;fill:#2c2c2a">Qf-dev-os 工作流</text>
+<text x="40" y="50" style="font-size:11.5px;fill:#5f5e5a">改动进来 → GATES 机械定级 R0–R5 → 取工件 + 测试 → DoR 进实现 → 实现 + 对抗测试 → DoD 可审计交付 → 落档 + 刷 STATE + validate。右侧两条贯穿轨:双轴硬门 / 自治循环。</text>
+
+<!-- main pipeline box -->
+<rect class="box" x="40" y="62" width="690" height="500" rx="8"/>
+<text class="tg" x="50" y="80">主流水：让严谨成比例 + 可审计 + 诚实标界</text>
+
+<g class="c-gray"><rect x="58" y="92" width="280" height="40" rx="4"/><text class="fn" x="66" y="109">改动进来（PR / 任务 / 一回合实现）</text><text class="ds" x="66" y="124">来源:研究 findings / GOAL gap / 交互</text></g>
+<line x1="198" y1="132" x2="198" y2="150" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+
+<g class="c-purple"><rect x="58" y="150" width="612" height="44" rx="4"/><text class="fn" x="66" y="167">① GATES 机械定级 R0–R5（不拍脑袋）</text><text class="ds" x="66" y="182">R0 纯文本 · R1 展示层 · R2 普通业务 · R3 核心契约面 · R4 不可逆/资金 · R5 系统级治理</text></g>
+<line x1="364" y1="194" x2="364" y2="212" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+<text class="lbl" x="372" y="207">升级地板:碰敏感面即抬级 · 不确定取高 · 未打标不可合</text>
+
+<g class="c-purple"><rect x="58" y="212" width="612" height="40" rx="4"/><text class="fn" x="66" y="229">取该级必备工件 + 必跑测试类</text><text class="ds" x="66" y="244">工件用 tasks/_templates/ 8 模板(TSD/ADR/REVIEW/TEST_EVIDENCE…),禁自造格式</text></g>
+<line x1="364" y1="252" x2="364" y2="270" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+
+<g class="c-teal"><rect x="58" y="270" width="612" height="42" rx="4"/><text class="fn" x="66" y="287">DoR 双闸过 → 进实现</text><text class="ds" x="66" y="302">已定级 · 待拍清零(Open Questions 无[需拍板]) · 接线/Scope/验收写清 · 上游无冲突</text></g>
+<line x1="364" y1="312" x2="364" y2="330" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+
+<g class="c-teal"><rect x="58" y="330" width="612" height="42" rx="4"/><text class="fn" x="66" y="347">写实现 + 对抗测试</text><text class="ds" x="66" y="362">「种一个已知坏,门必抓」(非覆盖率)· 变形 + 幂等 · 不破坏现有基线</text></g>
+<line x1="364" y1="372" x2="364" y2="390" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+
+<g class="c-amber"><rect x="58" y="390" width="612" height="46" rx="4"/><text class="fn" x="66" y="407">DoD → 出可审计交付清单（取代评审签字）</text><text class="ds" x="66" y="422">改了啥 / 测了啥(TEST_EVIDENCE:command·exit_code·禁裸写「通过」) / 决策依据(ADR·GAP_LOG)</text></g>
+<line x1="364" y1="436" x2="364" y2="454" stroke="#7a7873" stroke-width="1.4" marker-end="url(#ar)"/>
+
+<g class="c-teal"><rect x="58" y="454" width="612" height="44" rx="4"/><text class="fn" x="66" y="471">落档 done/ + 刷 STATE（非声明）+ validate_dev 自检</text><text class="ds" x="66" y="486">每条带 not_claims + 证据强度(🟡未验证 ≠ ✅);互引 id 接好;validate 退出码 0</text></g>
+
+<path d="M58 476 H46 V104 H56" fill="none" stroke="#7a7873" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+<text class="lbl" x="64" y="520">落档后重跑 gap 陈述器 → 新 gap 变任务 → 再循环(Goal Loop)</text>
+<text class="lbl" x="64" y="540">单一源:每机制一个权威家;别处一句指针引、不复述(冲突以原文为准)</text>
+
+<!-- side rail 1: 双轴硬门 -->
+<rect class="box" x="742" y="62" width="178" height="296" rx="8"/>
+<text class="tg" x="752" y="80" style="font-size:12px">双轴硬门（贯穿全程）</text>
+<g class="c-gray"><rect x="750" y="90" width="162" height="74" rx="4"/><text class="fn" x="758" y="106">工程过程门</text><text class="ds" x="758" y="121">评审 / 测试 / 文档同步</text><text class="ds" x="758" y="136">可降级 → 可审计交付</text><text class="ds" x="758" y="151">(agent 起草·人确认 valid)</text></g>
+<text x="831" y="180" style="font-size:18px;fill:#A32D2D;font-weight:700;text-anchor:middle">⊥</text>
+<text class="lbl" x="831" y="195" style="text-anchor:middle">两条轴正交,别混</text>
+<g class="c-red"><rect x="750" y="204" width="162" height="100" rx="4"/><text class="fn" x="758" y="221">运行时不可逆门</text><text class="ds" x="758" y="236">真钱 / 真信用 / 生产 flag</text><text class="ds" x="758" y="250">真 KMS / 对外发布 / 终决</text><text class="ds" x="758" y="266" style="font-weight:600">永不降 · 永远人审双签</text><text class="ds" x="758" y="280" style="font-weight:600">AI 不得自动执行</text><text class="ds" x="758" y="294">枚举见 RULES.project §致命</text></g>
+<text class="lbl" x="751" y="324">⛔ 全 OS 最值钱的一条:可</text>
+<text class="lbl" x="751" y="338">审计取代的是评审签字,不</text>
+<text class="lbl" x="751" y="352">是不可逆放行的人类双签。</text>
+
+<!-- side rail 2: 自治循环 -->
+<rect class="box" x="742" y="366" width="178" height="196" rx="8"/>
+<text class="tg" x="752" y="384" style="font-size:12px">自治循环（无人值守）</text>
+<g class="c-purple"><rect x="750" y="394" width="162" height="26" rx="4"/><text class="fn" x="758" y="411">read-first 读 live 状态</text></g>
+<line x1="831" y1="420" x2="831" y2="432" stroke="#7a7873" stroke-width="1.3" marker-end="url(#ar)"/>
+<g class="c-purple"><rect x="750" y="432" width="162" height="26" rx="4"/><text class="fn" x="758" y="449">write-back 一个有界增量</text></g>
+<line x1="831" y1="458" x2="831" y2="470" stroke="#7a7873" stroke-width="1.3" marker-end="url(#ar)"/>
+<g class="c-purple"><rect x="750" y="470" width="162" height="26" rx="4"/><text class="fn" x="758" y="487">record-blocked 卡住记账</text></g>
+<text class="lbl" x="751" y="514">反划水:done 是证据门,禁</text>
+<text class="lbl" x="751" y="528">「干到全 done」无界目标;</text>
+<text class="lbl" x="751" y="542">安全外壳七层 + 冲突即 stand-</text>
+<text class="lbl" x="751" y="556">down + 单写者多模型顾问。</text>
+
+<text x="40" y="588" style="font-size:10.5px;fill:#7a7873">总答案:让严谨成比例(① grader)+ 可审计(③ 取代签字)+ 诚实标界(④ 非声明)+ 有界自治(⑤ 循环),人只守不可逆门(② 双轴)。</text>
+<text x="40" y="606" style="font-size:10.5px;fill:#7a7873">accountability 按「不可逆性」分轴,不按「能力」分轴:能不能自己起草/实现可放开;不可逆真钱该不该 AI 自动执行,永不放开。</text>
+<text x="40" y="624" style="font-size:10.5px;fill:#7a7873">索引/§标题只为定位 → 跳到位后必读原文条款再行事。机制权威家:GATES.md / RULES.md §8 / tasks/_templates/ / STATE.md / autonomy/。</text>
+</svg>

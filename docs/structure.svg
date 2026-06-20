@@ -1,0 +1,51 @@
+<svg width="100%" viewBox="0 0 920 640" role="img" xmlns="http://www.w3.org/2000/svg"><title>Qf-dev-os 目录结构</title><desc>Qf-dev-os = Dev-os 四台底座(目标/状态/决策/规则/任务/研究/执行)叠加 5 个增量层(风险门 grader / 双轴边界 / 工件模板 / 非声明列 / 自治循环),底下一道 validate 闸:validate_dev 查框架、validate_project 查项目填。</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#7a7873" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<style>
+ text{font-family:-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+ .fn{font-size:11.5px;font-weight:600;}.ds{font-size:10.5px;}.tg{font-size:13px;font-weight:600;fill:#33322f;}.lbl{font-size:10.5px;fill:#7a7873;}
+ .box{fill:#fbfaf8;stroke:#d8d6cc;stroke-width:0.6;}
+ .c-teal{fill:#E1F5EE;stroke:#0F6E56;stroke-width:0.5;}.c-teal .fn{fill:#085041;}.c-teal .ds{fill:#0F6E56;}
+ .c-gray{fill:#F1EFE8;stroke:#5F5E5A;stroke-width:0.5;}.c-gray .fn{fill:#444441;}.c-gray .ds{fill:#5F5E5A;}
+ .c-purple{fill:#EEEDFE;stroke:#534AB7;stroke-width:0.5;}.c-purple .fn{fill:#3C3489;}.c-purple .ds{fill:#534AB7;}
+ .c-amber{fill:#FAEEDA;stroke:#854F0B;stroke-width:0.5;}.c-amber .fn{fill:#633806;}.c-amber .ds{fill:#854F0B;}
+</style>
+<rect x="0" y="0" width="920" height="640" fill="#fdfdfb"/>
+<text x="40" y="28" style="font-size:16px;font-weight:600;fill:#2c2c2a">Qf-dev-os 目录结构 = Dev-os 四台底座 + 5 增量层</text>
+<text x="40" y="47" style="font-size:11.5px;fill:#5f5e5a">根有 CLAUDE.md(路由,勿改);其余在 dev/ 下。底座灰=框架/青=项目填,5 增量层紫,底下一道 validate 闸。</text>
+<rect class="c-gray" x="40" y="57" width="12" height="12" rx="2"/><text class="lbl" x="56" y="67">框架·勿改</text>
+<rect class="c-teal" x="150" y="57" width="12" height="12" rx="2"/><text class="lbl" x="166" y="67">项目填</text>
+<rect class="c-purple" x="232" y="57" width="12" height="12" rx="2"/><text class="lbl" x="248" y="67">增量层</text>
+
+<rect class="box" x="40" y="78" width="840" height="154" rx="8"/>
+<text class="tg" x="50" y="96">❶ 四台底座（继承 Dev-os：目标 / 任务 / 研究 / 执行 + 诚实 gap）</text>
+<g class="c-teal"><rect x="48" y="104" width="194" height="34" rx="4"/><text class="fn" x="56" y="119">dev/GOAL.md</text><text class="ds" x="56" y="132">终态契约（项目填）</text></g>
+<g class="c-teal"><rect x="256" y="104" width="194" height="34" rx="4"/><text class="fn" x="264" y="119">dev/STATE.md</text><text class="ds" x="264" y="132">现状 gap·每 loop 重生</text></g>
+<g class="c-gray"><rect x="464" y="104" width="194" height="34" rx="4"/><text class="fn" x="472" y="119">dev/DECISIONS.md</text><text class="ds" x="472" y="132">已决 append-only</text></g>
+<g class="c-gray"><rect x="672" y="104" width="194" height="34" rx="4"/><text class="fn" x="680" y="119">dev/RULES.md</text><text class="ds" x="680" y="132">OS 铁律 §0–10</text></g>
+<g class="c-teal"><rect x="48" y="144" width="194" height="34" rx="4"/><text class="fn" x="56" y="159">dev/tasks/BOARD.md</text><text class="ds" x="56" y="172">任务台 + active/&lt;id&gt;/</text></g>
+<g class="c-teal"><rect x="256" y="144" width="194" height="34" rx="4"/><text class="fn" x="264" y="159">dev/research/</text><text class="ds" x="264" y="172">研究台 ideas/active/findings</text></g>
+<g class="c-gray"><rect x="464" y="144" width="194" height="34" rx="4"/><text class="fn" x="472" y="159">dev/exec/HANDOFF.md</text><text class="ds" x="472" y="172">执行台入口 + LOG</text></g>
+<g class="c-teal"><rect x="672" y="144" width="194" height="34" rx="4"/><text class="fn" x="680" y="159">dev/RULES.project.md</text><text class="ds" x="680" y="172">本项目红线（项目填）</text></g>
+<g class="c-gray"><rect x="48" y="184" width="402" height="34" rx="4"/><text class="fn" x="56" y="199">CLAUDE.md（根·路由,勿改）</text><text class="ds" x="56" y="212">导向 dev/ 四台 + 增量层路由</text></g>
+<g class="c-gray"><rect x="464" y="184" width="402" height="34" rx="4"/><text class="fn" x="472" y="199">dev/HARNESS_INDEX.md（主索引）</text><text class="ds" x="472" y="212">只导航,冲突以原文为准</text></g>
+
+<rect class="box" x="40" y="240" width="840" height="222" rx="8"/>
+<text class="tg" x="50" y="258" style="fill:#3C3489">❷ 5 增量层（qf 实战提炼·叠在底座台上,各有权威落点）</text>
+<g class="c-purple"><rect x="48" y="266" width="402" height="38" rx="4"/><text class="fn" x="56" y="282">① 风险阶梯 grader</text><text class="ds" x="56" y="296">落点 dev/GATES.md §1 — R0–R5 → 工件集 + 测试类</text></g>
+<g class="c-purple"><rect x="464" y="266" width="402" height="38" rx="4"/><text class="fn" x="472" y="282">② 正式事实 + 双轴门禁边界</text><text class="ds" x="472" y="296">落点 dev/RULES.md §8 + GATES.md §6 — 工程可降/真钱永不降</text></g>
+<g class="c-purple"><rect x="48" y="310" width="402" height="38" rx="4"/><text class="fn" x="56" y="326">③ 工件证据 + 可审计取代评审</text><text class="ds" x="56" y="340">落点 dev/tasks/_templates/ — 8 模板·TYPE-NNNN 互引图</text></g>
+<g class="c-purple"><rect x="464" y="310" width="402" height="38" rx="4"/><text class="fn" x="472" y="326">④ 诚实 / 非声明纪律</text><text class="ds" x="472" y="340">落点 dev/STATE.md 非声明列 — not_claims + 证据强度</text></g>
+<g class="c-purple"><rect x="48" y="354" width="818" height="38" rx="4"/><text class="fn" x="56" y="370">⑤ 自治循环 + 多智能体</text><text class="ds" x="56" y="384">落点 dev/autonomy/ — LOOP_CONTRACT(read-first→write-back→record-blocked) / SAFETY_ENVELOPE / CONCURRENCY / ADVISOR_PROTOCOL</text></g>
+<text x="50" y="412" style="font-size:11.5px;fill:#534AB7;font-weight:600">单一源铁律</text><text x="120" y="412" style="font-size:10.5px;fill:#5f5e5a">每机制只有一个权威家(上方落点);别处只用一句指针按章节名引、不复述。</text>
+<g class="c-amber"><rect x="48" y="424" width="402" height="30" rx="4"/><text class="fn" x="56" y="438">dev/RULES.project.md（项目填）</text><text class="ds" x="56" y="450">触发类别 / 致命错误枚举 / 契约文档名</text></g>
+<g class="c-amber"><rect x="464" y="424" width="402" height="30" rx="4"/><text class="fn" x="472" y="438">dev/exec/GAP_LOG.md</text><text class="ds" x="472" y="450">GAP-NNNN 静默决策·同 commit 追加</text></g>
+
+<rect class="box" x="40" y="470" width="840" height="100" rx="8"/>
+<text class="tg" x="50" y="488">❸ 闸 dev/scripts/（勿手改,只用来自检 + 兜底）</text>
+<g class="c-gray"><rect x="48" y="498" width="392" height="60" rx="4"/><text class="fn" x="56" y="515">validate_dev.py · 唯一阻断闸（查框架）</text><text class="ds" x="56" y="532">OS 结构存在 · owner==folder · 标签/计数一致</text><text class="ds" x="56" y="550">视图新鲜 · STATE 不假绿灯 · 退出码 0 / 1</text></g>
+<line x1="442" y1="528" x2="470" y2="528" stroke="#7a7873" stroke-width="1.6" marker-end="url(#ar)"/><text class="lbl" x="440" y="522">连带跑</text>
+<g class="c-teal"><rect x="472" y="498" width="394" height="60" rx="4"/><text class="fn" x="480" y="515">validate_project.py（项目填·默认空跑绿）</text><text class="ds" x="480" y="532">项目侧 config — 触发类别 / 契约清单 / REQUIRED_FILES</text><text class="ds" x="480" y="550">填进 RULES.project 后才查;骨架占位不报错</text></g>
+
+<text x="40" y="592" style="font-size:10.5px;fill:#7a7873">严格超集:Dev-os(❶,原样继承)+ 5 增量层(❷,qf 真增量集中在 ②双轴 / ④非声明 / ⑤自治)。怎么 drop-in / 填占位见 README.md。</text>
+<text x="40" y="610" style="font-size:10.5px;fill:#7a7873">读法:灰=OS 框架勿改 · 青=项目填占位 · 紫=5 增量层及权威落点 · 琥珀=项目侧填入文件。机制细节一律以 dev/ 各权威文件原文为准。</text>
+</svg>
