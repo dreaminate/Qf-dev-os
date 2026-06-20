@@ -44,18 +44,18 @@ CLAUDE.md(根·路由)
 | `dev/STATE.md` | 现状 gap + 子系统表(含**非声明/provenance 列** `[权威]`) | 每 loop | 重生 | 项目 | 1 |
 | `dev/tasks/BOARD.md` | 活跃任务板(todo/in_progress,完成即删行) | 取卡/完成 | 结构 | 项目 | 1 |
 | `dev/DECISIONS.md` | 已拍板决策账本(备选/审批证据/反引) | 拍板一项 | 追加 | 项目 | 1 |
-| `dev/RULES.md` | OS 铁律宪法 + 双轴门禁边界 `[权威双轴]` | OS 级(勿擅改) | 结构 | OS | 1 |
+| `dev/RULES.md` | OS 铁律宪法 `[权威]` | OS 级(勿擅改) | 结构 | OS | 1 |
 | `dev/RULES.project.md` | 本项目红线 / 冻结区 / 致命错误 / 风险阶梯触发条件 | 项目红线变 | 结构 | 项目 | 1 |
 | `dev/ISSUES.md` | 已知问题/坑(追加) | 发现问题 | 追加 | 项目 | 按需 |
 | `dev/experience.md` | 通用坑/经验 | 踩到通用坑 | 追加 | OS+项目 | 按需 |
 | `dev/CODEMAP.md` | 代码结构图(autonomy 是运行契约不画进来) | 结构大改 | 结构 | 项目 | 按需 |
 
-### 增量层① ② — 风险门禁（grader）
+### 增量层① — 风险门禁（grader）
 | artifact | 职责 | 更新触发 | 类型 | 级别 | 读序 |
 |---|---|---|---|---|---|
 | `dev/GATES.md` | **THE GRADER** `[权威]`:风险阶梯 R0–R5 + 必备工件集 + 必跑测试 + 升级地板 + DoR/DoD + 同步矩阵 + 事实源层级 + 可审计取代评审 | 阶梯/工件集变(OS 级) | 结构 | OS+触发占位 | 有风险时 |
 
-### 增量层③ — 工件证据库（8 模板,`dev/tasks/_templates/`）
+### 增量层② — 工件证据库（8 模板,`dev/tasks/_templates/`）
 | artifact | 职责 | 更新触发 | 类型 | 级别 | 读序 |
 |---|---|---|---|---|---|
 | `TASK.md` | 任务卡:OQ `[需拍板]/[已决]` + 计数器 + risk_level + 上下游 id 槽 | 起任务 | 结构 | OS | 起卡 |
@@ -67,7 +67,7 @@ CLAUDE.md(根·路由)
 | `INCIDENT_REPORT.md` | 事故单:修正即事件 + 强制回归 + 反引 | 出事故 | 结构 | OS | 事故时 |
 | `PR_CHECKLIST.md` | 改动自述:风险级+面+文档同步+测试+安全不变量逐条 affirm | 收尾交付 | 结构 | OS | 交付时 |
 
-### 增量层⑤ — 自治循环 + 多智能体（`dev/autonomy/`）
+### 增量层④ — 自治循环 + 多智能体（`dev/autonomy/`）
 | artifact | 职责 | 更新触发 | 类型 | 级别 | 读序 |
 |---|---|---|---|---|---|
 | `LOOP_CONTRACT.md` | read-first→write-back→record-blocked + bounded-autonomy + 反划水 + question-budget `[权威]` | OS 级 | 结构 | OS | 无人值守 |
@@ -92,6 +92,6 @@ CLAUDE.md(根·路由)
 
 ## 防漂指针（单一源）
 - 风险阶梯 / 门禁工件 → **只在 `GATES.md` 展开**,别处一句指针引(按 § 名钉)。
-- 双轴门禁边界(工程门可降 / 不可逆真钱门永不降)→ 措辞以 `RULES.md §双轴` 为准,`GATES.md` / `autonomy/LOOP_CONTRACT.md` 只 `[指针]` 引、不改写。
+- 可审计取代评审(工程门可降为「可审计交付」)→ 措辞以 `GATES.md §可审计` 为准,别处只 `[指针]` 引、不改写。
 - 非声明 / provenance 字段语义 → 以 `STATE.md` 为准。
 - 本表与任一原文冲突 → **改本表对齐原文**(原文是真理,索引是地图)。

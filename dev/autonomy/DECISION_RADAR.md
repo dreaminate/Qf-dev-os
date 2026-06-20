@@ -4,7 +4,7 @@
 > 优先级**高于自设目标**（owner 拍完,loop 据 ruling 重定向）。和 `OWNER_NEXT.md` 的区别：那里是 owner **主动**投活,这里是 loop **反向**抛出需 owner 定的岔路。
 
 <!-- 格式·防跑偏 | 结构型(【项目级别】填):每个雷达项两阶段—— survey(loop 写) → ruling(owner 写, loop 回填重定向)。
-怎么填:① loop 遇到 human-only 岔路(经济/产品判断/不可逆/真钱/二选一,见 LOOP_CONTRACT §3 question-budget),
+怎么填:① loop 遇到 human-only 岔路(经济/产品判断 / 不可逆或高破坏 / 二选一,见 LOOP_CONTRACT §3 question-budget),
    在「## 待拍」加一项 survey:列真岔路 + A/B/C 选项 + 每项 provenance 标签(溯到哪条研究/需求/约束);
 ② owner 在该项补 ruling:选了啥 + 含义/解锁 + 怎么重定向 loop + 砍掉的选项透明列出;
 ③ loop 读到 ruling 后据它重定向,并把该项搬到「## 已拍板」,做 stale-cleanup(被砍选项相关的自设目标一并清掉)。
@@ -17,7 +17,7 @@
 ## 待拍（loop 写 survey · 等 owner ruling）
 
 ### RADAR-<NNN> · <一句话岔路标题>
-- **岔路**：<这是个什么决策、为什么 loop 不能自决（落到经济/产品/不可逆/真钱?）>
+- **岔路**：<这是个什么决策、为什么 loop 不能自决（落到经济/产品判断 / 不可逆或高破坏 / 二选一?）>
 - **选项 A**：<方案 A> — <代价/含义> · provenance：<[研究:…] / [需求:…] / [约束:…]>
 - **选项 B**：<方案 B> — <代价/含义> · provenance：<…>
 - **选项 C**：<可选> — <…> · provenance：<…>

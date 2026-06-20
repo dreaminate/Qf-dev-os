@@ -7,11 +7,11 @@
 <!-- 【开发os级别】勿改 · clone 自 qf-dev-os。本文件是 [权威]：循环契约 / bounded-autonomy / 反划水 / question-budget 都只在这里展开,别处只引。 -->
 <!-- 格式·防跑偏 | 结构型(固定节序,整体稳定)：
 §0 一轮的形状(read-first→write-back→record-blocked) · §1 bounded-autonomy(每 goal 须带边界) ·
-§2 反划水(每 goal 须溯到真需求) · §3 question-budget(arbiter-by-exception) · §4 双轴硬门 fence([指针]→RULES) · §5 一轮自检清单。
+§2 反划水(每 goal 须溯到真需求) · §3 question-budget(arbiter-by-exception) · §4 一轮自检清单。
 改内容别动节骨架;新增机制加新节。 -->
 
 > **索引**(仅供定位 —— 据此跳到对应 §,**必须读原文条款再行事**)：
-> §0 一轮的形状 · §1 有界自治 · §2 反划水 · §3 问题预算 · §4 双轴硬门 fence · §5 一轮自检。
+> §0 一轮的形状 · §1 有界自治 · §2 反划水 · §3 问题预算 · §4 一轮自检。
 
 ---
 
@@ -21,7 +21,7 @@
 
 1. **read-first（先读 live 状态）**：先读项目的 live 交接文件（`<填:本项目的 SESSION_CONTEXT 式单一交接文件>`）+ 当前 active goal + `OWNER_NEXT.md` + `DECISION_RADAR.md`。**owner 输入压过 agent 自设目标**（顺序见 §2 阶梯）。**不凭记忆推进**——记忆是上一轮的,可能已被并发会话改写（见 `CONCURRENCY.md`）。
 2. **write-back（做一个有界增量 + 收口回写）**：做**一个**经验证的有界增量（§1）,然后把状态**写回**那个 live 交接文件（这一轮干了啥 / 验证事实 / 非声明边界 / 下一步 / 待 owner 决策队列）。**不假装一轮干到全完成**——下一轮 runner 还会唤起你。
-3. **record-blocked（卡住就记账,不硬闯）**：遇到本轮闭不掉的（缺拍板 / 撞 §4 硬门 / 撞并发冲突）→ **记进 live 文件的「待 owner 决策」/ `GAP_LOG.md` / `DECISION_RADAR.md`**,绕开它选下一件能自治推进的事,**不在卡点处空转、不硬闯硬门**。
+3. **record-blocked（卡住就记账,不硬闯）**：遇到本轮闭不掉的（缺拍板 / 撞并发冲突）→ **记进 live 文件的「待 owner 决策」/ `GAP_LOG.md` / `DECISION_RADAR.md`**,绕开它选下一件能自治推进的事,**不在卡点处空转**。
 
 > 收尾纪律：一轮结束**必落** live 交接文件 + 一行 `exec/LOG.md`（本轮干了啥 + 交接）。durable 进度进仓库,别只活在会被压缩的对话里。
 
@@ -58,18 +58,12 @@
 人是**例外仲裁者**（arbiter-by-exception）,不是每步审批者。**自治推进时不主动发问**：
 - **不**主动 offer checkpoint（「要不要现在 push / review?」）—— review 节奏由 runner 的强制 checkpoint 管（见 `SAFETY_ENVELOPE.md`）。
 - 当存在合理默认时,**不**为「选哪个切片」发问 —— 自己选最有界、最适合自治的那件,直接建。
-- 问题**只留给 human-only 岔路**：§4 硬门的放行、真实经济 / 产品判断、owner 明确点过的菜单。这些进 `DECISION_RADAR.md` 等拍板,**不阻塞**其余可自治推进的活。
+- 问题**只留给 human-only 岔路**：经济 / 产品判断、不可逆或高破坏面的放行、owner 明确点过的菜单。这些进 `DECISION_RADAR.md` 等拍板,**不阻塞**其余可自治推进的活。
 
-## 4. 双轴硬门 fence（throughput 永不越不可逆真钱门）
-
-[指针] → `RULES.md §双轴门禁边界`（权威在那里,这里不复述）。
-
-一句话边界：**吞吐量再高,也永不跨过「真钱 / 真信用 / 不可逆动作 等」这条门**（权威清单见 `RULES.md §8`）。这类动作**永远人审（双签）,AI 不得自动执行**,「一直做下去」也不例外。具体红线清单在 `RULES.project.md`（项目填）+ `SAFETY_ENVELOPE.md §deny[]`。撞到 = §0 的 record-blocked：记进待 owner 决策,绕开,**不自决**。
-
-## 5. 一轮自检（收口前过一遍）
+## 4. 一轮自检（收口前过一遍）
 - ⬜ 这一段带齐了 §1 四样（边界 / 阶段校验 / 停止条件 / 安全下一步）?
 - ⬜ 它溯到了真需求并述了价值（§2）?不是 make-work / 重做 / 凑量?
 - ⬜ 标 done 的都引了具体证据（§2.2）?没引证的没擅自归档?
 - ⬜ 没主动发非必要的问题（§3）?该等拍板的进了 `DECISION_RADAR.md` 而非阻塞?
-- ⬜ 没跨 §4 硬门?撞到的都 record-blocked 了?
+- ⬜ 撞到 record-blocked 的（缺拍板 / 冲突）都记账了?
 - ⬜ live 交接文件 + `exec/LOG.md` 都回写了?
