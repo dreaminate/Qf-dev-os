@@ -51,7 +51,7 @@ LIVE_DOCS: list[str] = [
 # FREEZE_GLOBS：冻结区 glob（相对 ROOT）。命中存在的文件 → **提示走协商**（非硬阻断 FAIL；
 # 真正"碰冻结区即停"的红线在 dev/RULES.project.md + dev/GATES.md §升级地板，这里只做可见性兜底）。
 # 怎么填：把"改它须先和 owner 协商 / 须升 ≥R3"的区域 glob 列进来。
-#   例：["app/payment/**", "app/governance/constitution/**", "migrations/**"]
+#   例：["src/core/**", "config/release/**", "migrations/**"]
 FREEZE_GLOBS: list[str] = [
     # "<冻结区 glob>",
 ]
@@ -77,9 +77,9 @@ REQUIRED_TOKENS: dict[str, list[str]] = {
 #   - "ext": 被管理文件后缀（默认 "md"）
 #   - "trace_back_tokens"(可选): 反向——中央 PRD/总纲文件须含的指针 token（确保总纲指回明细体系）
 #   例：[{
-#       "managed_dir": "docs/product/frontend-requirements",
+#       "managed_dir": "docs/specs/frontend",
 #       "index": "README.md",
-#       "trace": "docs/product/PRD_DETAIL_REQUIREMENTS_TRACE.md",
+#       "trace": "docs/specs/REQUIREMENTS_TRACE.md",
 #       "ext": "md",
 #   }]
 LEDGER_CONSISTENCY: list[dict] = [

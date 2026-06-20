@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# <!-- 【开发os级别】qf-dev-os 增强版 OS 校验 | 类型(脚本·勿改) : 只校 OS 结构,不烤项目内容;占位 <...> 行一律跳过 -->
-"""dev/ 开发 OS 结构校验器（【开发os级别】qf-dev-os 增强版 OS 校验 · 勿改 · clone 自 dev-os）。
+# <!-- 【开发os级别】Dev-os 超集·增量增强版 OS 校验 | 类型(脚本·勿改) : 只校 OS 结构,不烤项目内容;占位 <...> 行一律跳过 -->
+"""dev/ 开发 OS 结构校验器（【开发os级别】Dev-os 超集·增量增强版 OS 校验 · 勿改 · clone 自 dev-os）。
 
 只管 **OS 结构**（项目无关），四组检查：
   ① 四台必需文件 / 目录骨架 / BOARD↔done 一致 / 活跃任务孤儿（Dev-os 底座原检查，全保留）。
-  ② qf 增量层文件存在性（GATES / HARNESS_INDEX / 8 模板 / autonomy/* / runner / GAP_LOG）——缺即 FAIL。
+  ② 增量层文件存在性（GATES / HARNESS_INDEX / 8 模板 / autonomy/* / runner / GAP_LOG）——缺即 FAIL。
   ③ 软哨兵 canary（缺只 WARN 不 FAIL）：GATES 含风险阶梯/R0/升级；STATE 含 非声明/provenance 列。
   ④ STATE 假绿灯 + RULES 不变量 + 任务卡一致性（Dev-os 底座原检查，全保留）。
 
@@ -58,23 +58,23 @@ def run_os_checks(dev: Path) -> tuple[list[str], list[str]]:
         (oks if (dev / rel).is_file() else fails).append(f"OS 结构文件 {rel}")
     (oks if (dev.parent / "CLAUDE.md").is_file() else fails).append("OS 结构文件 CLAUDE.md(根)")
 
-    # 2c. qf 增量层文件（5 增强层落地物;缺即 FAIL —— 这些是本 OS 比 Dev-os 多出来的骨架）
-    os_files_qf = [
-        # ①②⑥ grader + 主索引
+    # 2c. 增量层文件（4 增量层落地物;缺即 FAIL —— 这些是本 OS 比 Dev-os 多出来的骨架）
+    os_files_increment = [
+        # grader + 主索引
         "GATES.md", "HARNESS_INDEX.md",
-        # ③ 工件证据库 8 模板（TASK.md 已在 2b 底座清单内,不重复）
+        # 工件证据库 8 模板（TASK.md 已在 2b 底座清单内,不重复）
         "tasks/_templates/TSD.md", "tasks/_templates/LIGHT_TSD.md", "tasks/_templates/ADR.md",
         "tasks/_templates/REVIEW_RECEIPT.md", "tasks/_templates/TEST_EVIDENCE.md",
         "tasks/_templates/INCIDENT_REPORT.md", "tasks/_templates/PR_CHECKLIST.md",
-        # ⑤ 自治循环 + 多智能体
+        # 自治循环 + 多智能体
         "autonomy/LOOP_CONTRACT.md", "autonomy/ADVISOR_PROTOCOL.md", "autonomy/CONCURRENCY.md",
         "autonomy/SAFETY_ENVELOPE.md", "autonomy/OWNER_NEXT.md", "autonomy/DECISION_RADAR.md",
         "autonomy/runner/README.md",
-        # ⑤ spec 静默决策账本
+        # spec 静默决策账本
         "exec/GAP_LOG.md",
     ]
-    for rel in os_files_qf:
-        (oks if (dev / rel).is_file() else fails).append(f"qf 增量层文件 {rel}")
+    for rel in os_files_increment:
+        (oks if (dev / rel).is_file() else fails).append(f"增量层文件 {rel}")
 
     # 3. BOARD ✅done ↔ done/<id>/
     board = (dev / "tasks/BOARD.md").read_text(encoding="utf-8") if (dev / "tasks/BOARD.md").is_file() else ""
@@ -151,18 +151,18 @@ def _canary_rules(dev: Path) -> list[str]:
     return []
 
 
-# qf 增量软哨兵:文件在但被掏空了机制 → WARN(不 FAIL,允许填空骨架时尚未展开;但提醒别精简掉核心字眼)。
+# 增量层软哨兵:文件在但被掏空了机制 → WARN(不 FAIL,允许填空骨架时尚未展开;但提醒别精简掉核心字眼)。
 # 任一别名命中即视为该机制还在(措辞可换,核心概念别丢)。
 _OS_CANARY = {
     # GATES.md = grader,风险阶梯是它的脊;掏空 → 整套门禁映射失效
     "GATES.md": (["风险阶梯", "R0", "升级"], "缺风险阶梯/R0/升级地板字眼 —— grader 脊被掏空(§风险阶梯 R0–R5 + §升级地板)"),
-    # STATE.md 每条须带非声明/provenance(诚实/非声明纪律,增量④)
+    # STATE.md 每条须带非声明/provenance(诚实/非声明纪律,增量层③)
     "STATE.md": (["非声明", "provenance"], "缺 非声明/provenance 列 —— 诚实纪律哨兵丢(每条须写不证明什么 + 证据强度)"),
 }
 
 
 def _canary_os(dev: Path) -> list[str]:
-    """qf 增量软哨兵:文件在但核心机制字眼缺 → WARN。文件本身缺由 run_os_checks 的 2c 段 FAIL,这里不重复。"""
+    """增量层软哨兵:文件在但核心机制字眼缺 → WARN。文件本身缺由 run_os_checks 的 2c 段 FAIL,这里不重复。"""
     warns: list[str] = []
     for rel, (tokens, msg) in _OS_CANARY.items():
         p = dev / rel

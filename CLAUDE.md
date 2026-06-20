@@ -2,7 +2,7 @@
 
 <!-- 格式·防跑偏 | 类型(结构型):慢变路由 + 通用规矩 + memory↔dev 分工;
 【开发os级别】clone 自 dev-os·勿塞当前进度(进度在 STATE/BOARD、红线在 RULES.project)。
-增量层路由(GATES/autonomy/OWNER_NEXT)是 qf-dev-os 多出来的入口,机制权威在各自文件、这里只导航。 -->
+增量层路由(GATES/autonomy/OWNER_NEXT)是本 OS（Dev-os 超集）多出来的入口,机制权威在各自文件、这里只导航。 -->
 
 ⛔ 别直接改代码 —— 先读 dev/。本仓库由 **dev/ 开发 OS** 驱动,不是普通仓库。
 
